@@ -3,6 +3,8 @@ import './App.css'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 const Home = React.lazy(()=>import ("./pages/Home"))
 const AboutUs = React.lazy(()=>import("./pages/AboutUs"))
+const SignIn = React.lazy(()=>import("./pages/SignIn"))
+const CreateUser = React.lazy(()=>import("./pages/SignUp"))
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
     <Routes>
     <Route exact path='/' element={< Home />}/>
     <Route exact path='/about-us' element={< AboutUs />}/>
+    <Route exact path='/sign-in' element={< SignIn />}/>
+    <Route exact path='/create-user' element={< CreateUser />}/>
     </Routes>
     </BrowserRouter>
     </div>

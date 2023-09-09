@@ -5,12 +5,14 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { Card, Col, Row } from "antd";
 import car from "../assets/car.jpg"
 import "../App.css"
+import Map from "../components/Map";
+
 
 function Home() {
   const [text, count] = useTypewriter({
     words: [
-        "WE DO TIMELY RESCUE SERVICES",
-        "AND ALSO DO MEDICAL EQUIPMENT SUPPLIES",
+        "We do timely rescue services",
+        "and also do medical equipment supplies",
     ],
     loop: true,
     delaySpeed: 2000,
@@ -102,7 +104,7 @@ const layout = {
         }}          
          className="flex justify-center z-20 font-bold mt-8 mb-4 text-3xl font-sans">Why choose us</motion.div>
 
-          {/* Cards */}
+          {/* Services offered */}
             <motion.div 
           initial={{
             y: 350,
@@ -115,13 +117,13 @@ const layout = {
         }} className="w-full">
               <Row gutter={24} className="flex justify-evenly my-4">
                 <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className="my-1 border-0">
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
                   <div>
                     <div>
                       
                     </div>
                     <div className="text-red-600 font-bold font-sans text-lg">
-                    Quick Service
+                    Emergency Response
                     </div>
                   </div>
                   <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
@@ -129,11 +131,11 @@ const layout = {
                 </Col>
 
                 <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className="my-1 border-0">
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
                   <div>
                     <div></div>
                     <div className="text-red-600 font-bold font-sans text-lg">
-                    Quick Service
+                    Hospital Transfer
                     </div>
                   </div>
                   <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
@@ -141,21 +143,96 @@ const layout = {
                 </Col>
 
                 <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className="my-1 border-0">
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
                   <div>
                     <div></div>
                     <div className="text-red-600 font-bold font-sans text-lg">
-                    Quick Service
+                    Evacuation
                     </div>
                   </div>
                   <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
                 </Card>
                 </Col>
 
+                <Col {...layout}>
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Hospital Discharge
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card>
+                </Col>
+
+                <Col {...layout}>
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Hospital Discharge
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card>
+                </Col>
+
+                <Col {...layout}>
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Standby services
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card>
+                </Col>
+
+                <Col {...layout}>
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Events/Festival Covering
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card>
+                </Col>
+
+                <Col {...layout}>
+                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Supply of medical equipment
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card>
+                </Col>
                 
+                <Col {...layout}>
+                {/* <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
+                  <div>
+                    <div></div>
+                    <div className="text-red-600 font-bold font-sans text-lg">
+                    Evacuation
+                    </div>
+                  </div>
+                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
+                </Card> */}
+                </Col>
               </Row>
             </motion.div>
           </div>
+
+
+          {/* Map View */}
+          <Map/>
+
         </div>
       </div>
     </div>
