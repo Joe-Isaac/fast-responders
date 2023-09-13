@@ -15,7 +15,6 @@ function App() {
     <BrowserRouter>
     <Routes>
     <Route exact path='/' element={< Home />}/>
-    <Route exact path='/about-us' element={< AboutUs />}/>
     <Route exact path='/sign-in' element={< SignIn />}/>
     <Route exact path='/create-user' element={< CreateUser />}/>
     <Route exact path='/profile' element={< DriverProfile />}/>

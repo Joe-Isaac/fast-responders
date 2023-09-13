@@ -182,7 +182,7 @@ function SignUp() {
 }
 
   return (
-    <div className="h-screen flex items-center bg-red-50">
+    <div className="h-screen flex items-center bg-blue-50">
       <div className="w-full flex justify-center items-center">
         {/* Header section */}
 
@@ -197,7 +197,7 @@ function SignUp() {
           className="w-2/5"
         >
           <div className="w-full flex justify-center">
-          <img src={logo} className="object-cover h-20 w-20" />
+          <img src={logo} className="object-cover h-28 w-28" />
           </div>
 
           <div className="flex w-full flex-col items-center justify-center">
@@ -256,7 +256,7 @@ function SignUp() {
               </Form.Item>
 
               <div className="w-full flex h-12 justify-center">
-                <button type="submit" className="text-white  w-3/4 font-bold hover:bg-white hover:text-black bg-red-600 py-2 hover:border-2 px-4 rounded-lg font-mono text-xl">
+                <button type="submit" className="text-white  w-3/4 font-bold hover:bg-white hover:text-black bg-blue-500 py-2 hover:border-2 px-4 rounded-lg font-mono text-xl">
                     Create User
                 </button>
               </div>

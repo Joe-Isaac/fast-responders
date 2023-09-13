@@ -1,28 +1,31 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { Card, Col, Row } from "antd";
-import car from "../assets/car.jpg"
-import "../App.css"
+import car from "../assets/car.jpg";
+import "../App.css";
 import Map from "../components/Map";
-
+import LandingNavBar from "../components/LandingNavBar";
+import { FaAmbulance, FaBeer, FaRegHospital } from "react-icons/fa";
+import { MdEmojiTransportation } from "react-icons/md";
+import Zones from "../components/Zones";
+import Footer from "../components/Footer";
 
 function Home() {
   const [text, count] = useTypewriter({
     words: [
-        "We do timely rescue services",
-        "and also do medical equipment supplies",
+      "We do timely rescue services",
+      "And also do medical equipment supplies",
     ],
     loop: true,
     delaySpeed: 2000,
-})
+  });
 
-const layout = {
-  xs: { span: 24 },
-  sm: { span: 11 },
-  lg: { span: 7 },
-};
+  const layout = {
+    xs: { span: 24 },
+    sm: { span: 4 },
+    lg: { span: 3 },
+  };
 
   return (
     <div
@@ -34,205 +37,152 @@ const layout = {
       //   backgroundPosition: "center",
       // }}
     >
-      <div className="h-full 
-      
-      " >
-        <Navbar />
+      <div className="h-full">
+        <LandingNavBar />
 
-        <div className="lg:my-1 my-12">
-        <div className="flex justify-between items-center">
-          <div className="w-full">
-          <motion.div
-        initial={{
-            x: -450,
+        <div className="flex">
+          <div className="w-3/4 pt-10 pb-36 flex items-center justify-center bg-blue-100">
+            <div className="">
+              <p className="font-bold text-4xl font-sans text-black">
+                Timely Rescue Services
+              </p>
+              <div className="flex">
+                <div className="font-bold text-4xl font-sans text-black">
+                  & Medical
+                </div>
+                <div className="text-blue-500 font-bold text-4xl font-sans ml-2">
+                  Equipment Supplies.
+                </div>
+              </div>
 
-        }}
-        animate={{
-            x: 0,
-        }}
+              <br />
+              <br />
+              <div className="flex items-center space-x-10">
+                <div className="bg-blue-400 text-black font-bold font-sans text-lg py-2 px-6 rounded-xl hover:bg-white hover:text-black cursor-pointer shadow-md">
+                  Book Ambulance
+                </div>
+                <div className="bg-red-700 text-white font-bold font-sans text-lg py-2 px-6 rounded-xl hover:bg-black hover:text-white cursor-pointer shadow-md">
+                  <a
+                    href="tel:0701297753"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Call Us Now
+                  </a>
+                </div>
+              </div>
 
-        transition={{
-            duration: 2.5,
-        }}
-         className="font-bold h-32 w-full text-2xl px-4 flex justify-center items-center">
-          <span>{text}</span>
-          <Cursor cursorColor='white'/>
-          </motion.div>
-
-          <motion.div 
-          initial={{
-            y: 150,
-            // opacity: 0,
-            // scale: 0.5,
-
-        }}
-        animate={{
-            y: 0,
-            // opacity: 1,
-            // scale: 1,
-        }}
-
-        transition={{
-            duration: 1.5,
-        }}          
-          className="flex justify-around w-full h-20 items-center my-4">
-            <button className="text-white text-lg font-bold font-sans hover:bg-white hover:text-black bg-red-600 py-6 hover:border-2 px-4 rounded-lg">
-            Get an ambulance now
-            </button>
-          </motion.div>
-          </div>
-
-          {/* <div className="flex justify-start items-center">
-            <div>
-            <img className="object-cover h-24" src={car}/>
+              <div className="mt-12 flex text-xl font-sans font-semibold items-center">
+                Or call our hotline number{" "}
+                <div className="text-red-700 font-sans text-3xl font-bold ml-4">
+                  0701 297753
+                </div>
+              </div>
             </div>
-          </div> */}
+          </div>
+          <div className="w-1/4 bg-blue-400">
+            
+          </div>
+        </div>
+        {/* Key services */}
+        <div
+          className="flex items-center justify-evenly"
+          style={{
+            position: "relative",
+            top: -80,
+          }}
+        >
+          <div className="w-1/4 bg-white shadow-md font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            <FaAmbulance size={50} className="text-red-700" />
+            <div className="font-semibold text-lg my-2">Emergency Response</div>
+            <div className="text-sm text-gray-600">
+              Rapid, life-saving medical assistance, often dispatched in
+              critical situations to provide immediate care and transport to a
+              healthcare facility.
+            </div>
+          </div>
+          <div className="w-1/4 bg-blue-400 shadow-lg font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            <MdEmojiTransportation size={50} className="text-black" />
+            <div className="font-semibold text-black text-lg my-2">
+              Hospital Transfer
+            </div>
+            <div className="text-sm text-black">
+              A professional service for safely and efficiently moving patients
+              between hospitals, ensuring their well-being during the journey.
+            </div>
+          </div>
+          <div className="w-1/4 bg-white shadow-md font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            <FaRegHospital size={50} className="text-red-700" />
+            <div className="font-semibold text-lg my-2">Hospital Discharge</div>
+            <div className="text-sm text-gray-600">
+              A carefully coordinated process that allows patients to leave the
+              hospital with the necessary follow-up care and resources for a
+              smooth recovery at home.
+            </div>
+          </div>
         </div>
 
-          {/* Why choose us */}
-          <div>
-          <motion.div 
-          initial={{
-            x: 350,
-        }}
-        animate={{
-            x: 0,
-        }}
+        
+        {/* Other services */}
+        <div className="font-sans font-bold text-3xl flex justify-center">Other Medical Services</div>
 
-        transition={{
-            duration: 3.5,
-        }}          
-         className="flex justify-center z-20 font-bold mt-8 mb-4 text-3xl font-sans">Why choose us</motion.div>
+        <div className="flex items-center justify-evenly font-sans my-4">
+          <div className="bg-white w-1/4 font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            {/* <FaAmbulance size={50} className="text-red-700" /> */}
+            <div className="font-semibold text-lg my-2">Events Covering</div>
+            <div className="text-sm text-gray-600">
+              On-site medical support and first aid services for public or
+              private events to ensure the well-being of attendees.
+            </div>
+          </div>
 
-          {/* Services offered */}
-            <motion.div 
-          initial={{
-            y: 350,
-        }}
-        animate={{
-            y: 0,
-        }}
-        transition={{
-            duration: 2.5,
-        }} className="w-full">
-              <Row gutter={24} className="flex justify-evenly my-4">
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div>
-                      
-                    </div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Emergency Response
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Hospital Transfer
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Evacuation
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Hospital Discharge
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Hospital Discharge
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Standby services
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Events/Festival Covering
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-
-                <Col {...layout}>
-                <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Supply of medical equipment
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card>
-                </Col>
-                
-                <Col {...layout}>
-                {/* <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} hoverable className="my-1 border-0">
-                  <div>
-                    <div></div>
-                    <div className="text-red-600 font-bold font-sans text-lg">
-                    Evacuation
-                    </div>
-                  </div>
-                  <div>Our vehicles and staff are always ready to deliver emergency services quickly</div>
-                </Card> */}
-                </Col>
-              </Row>
-            </motion.div>
+          <div className="bg-white w-1/4 font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            {/* <FaAmbulance size={50} className="text-red-700" /> */}
+            <div className="font-semibold text-lg my-2">Evacuation</div>
+            <div className="text-sm text-gray-600">
+                The organized and secure relocation of individuals, particularly
+                during disasters, emergencies, or hazardous situations.
+            </div>
           </div>
 
 
-          {/* Map View */}
-          <Map/>
+          <div className="bg-white w-1/4 font-sans rounded-xl flex flex-col items-center justify-center p-8">
+            {/* <FaAmbulance size={50} className="text-red-700" /> */}
+            <div className="font-semibold text-lg my-2">Medical Equipment Supply</div>
+            <div className="text-sm text-gray-600">
+                Reliable delivery of essential medical equipment and supplies,
+                ensuring healthcare facilities have the tools needed to provide
+                quality care.
+            </div>
+          </div>         
+        </div>
 
+        <div className="flex flex-col justify-center items-center font-sans my-4">
+         <div className="font-bold text-3xl ">Areas We Serve</div>
+         <br/>
+         <div className="w-1/3 font-sans text-gray-600">We typically serve the areas listed below, however please give us a call to confirm.</div>
+        <div className="w-full my-6 flex items-center justify-evenly">
+        <div className="font-sans text-gray-600">
+          <ul style={{listStyle: 'square'}}>
+            <li>Kasarani, Nairobi</li>
+            <li>Muthaiga, Nairobi</li>
+            <li>Karen, Nairobi, Kenya</li>
+            <li>Thika, Central Province</li>
+            <li>Kiambu, Central Province</li>
+            <li>Murang&apos;a, Central Province</li>
+            <li>Machakos, Eastern Province</li>
+            <li>Athi River, Eastern Province</li>
+          </ul>
+        </div>
+          <div className="w-1/2">
+          <Zones/>
+          </div>
+        </div>
+        </div>
+
+
+        {/* Footer */}
+        <div className="flex items-center justify-center">
+        <Footer/>
         </div>
       </div>
     </div>

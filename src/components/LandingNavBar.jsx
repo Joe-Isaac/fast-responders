@@ -3,7 +3,7 @@ import logo from "../assets/logo.jpg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Navbar() {
+function LandingNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [dimensions, setDimensions] = useState(window.innerWidth);
 
@@ -29,26 +29,17 @@ function Navbar() {
   
 
   return (
-    <div className="w-full pt-2 flex items-centered justify-between px-4">
+    <div className="w-full pt-0 flex justify-between px-0">
       {dimensions > 768 ? (
         // Logo for large screen
-        <motion.div initial={{
-        opacity: 0
-      }}
-      animate={{
-        // x: 0,
-        opacity: 1,
-        // scale: 1,
-    }}
-
-    transition={{
-        duration: 4.0,
-    }}      
-      className="sm:w-1/4 ml-[20%] md:ml-0">
+        <div   
+      className="sm:w-1/4 bg-blue-100 md:ml-0 ">
         <Link to="/">
-          <img src={logo} className="w-48 h-48 rounded-full object-contain" />
+          <div className="flex items-center justify-center py-4">
+            <img src={logo} className="w-28 h-28 mx-4 rounded-full object-contain" />
+            </div>
         </Link>
-      </motion.div>
+      </div>
       )
       :
       // Logo for small screens
@@ -72,9 +63,11 @@ function Navbar() {
       }
 
       {dimensions > 768 ? (
-        <div className="sm:w-3/4 flex items-center font-mono text-base">
+        <>
+        <div className="sm:w-1/2 flex items-center text-base bg-blue-100">
           <div className="flex justify-center md:w-2/3 items-center">
-            <div className="w-3/5 flex justify-evenly items-center font-serif">
+            <div className="w-4/5 flex justify-between items-center font-serif ">
+              
               <div className="cursor-pointer">
                 <Link to="/" className="cursor-pointer">
                   Home
@@ -82,43 +75,40 @@ function Navbar() {
               </div>
               <div className="cursor-pointer">
                 <Link
-                  to="/contact-us"
+                  to="/"
                   className="cursor-pointer"
                 >
                   Contact Us
                 </Link>
               </div>
               <div className="cursor-pointer">
-              <Link to="/services" className="cursor-pointer">
+              <Link to="/" className="cursor-pointer">
                   Services
                 </Link>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="flex justify-center sm:w-1/3 items-center">
-            <div className="w-full flex justify-evenly items-center font-serif">
-              <div className="cursor-pointer">
-                <Link to="/gallery" className="cursor-pointer">
-                  Gallery
-                </Link>
-              </div>
-              <div className="cursor-pointer">
-                <Link to="/about-us" className="cursor-pointer">
-                  About us
-                </Link>
-              </div>
-              {/* <div className="cursor-pointer">
-                <Link
-                  to="/about-us"
-                  className="cursor-pointer"
-                >
-                  Call Now
-                </Link>
-              </div> */}
-            </div>
+        <div className="flex justify-center sm:w-1/4 items-center bg-blue-400">
+        <div className="w-full flex justify-evenly items-center font-serif">
+          
+          <div className="cursor-pointer">
+            <Link to="/" className="cursor-pointer text-white font-bold font-sans">
+              Gallery
+            </Link>
+          </div>
+          <div className="cursor-pointer">
+            <Link to="/sign-in" className="cursor-pointer">
+              <button className="py-1 px-8 rounded-2xl text-blue-500 font-sans font-bold bg-white">
+                Login
+              </button>
+            </Link>
           </div>
         </div>
+      </div>
+        </>
+
       ) : (
         <div className="mr-8">
           {/* Mobile Menu */}
@@ -165,7 +155,7 @@ function Navbar() {
               </div>
               <div className="mb-6">
                 <Link
-                  to="/services"
+                  to="/"
                   className="block  font-serif font-semibold text-2xl hover:text-black py-2"
                   onClick={toggleMenu}
                 >
@@ -174,7 +164,7 @@ function Navbar() {
               </div>
               <div className="mb-6">
                 <Link
-                  to="/gallery"
+                  to="/"
                   className="block  font-serif font-semibold text-2xl hover:text-black py-2"
                   onClick={toggleMenu}
                 >
@@ -183,7 +173,7 @@ function Navbar() {
               </div>
               <div className="mb-6">
                 <Link
-                  to="/about-us"
+                  to="/"
                   className="block  font-serif font-semibold text-2xl hover:text-black py-2"
                   onClick={toggleMenu}
                 >
@@ -232,4 +222,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default LandingNavBar;
