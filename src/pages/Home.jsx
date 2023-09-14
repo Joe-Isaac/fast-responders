@@ -10,6 +10,7 @@ import { FaAmbulance, FaBeer, FaRegHospital } from "react-icons/fa";
 import { MdEmojiTransportation } from "react-icons/md";
 import Zones from "../components/Zones";
 import Footer from "../components/Footer";
+import counties from "../assets/counties";
 
 function Home() {
   const [text, count] = useTypewriter({
@@ -30,24 +31,28 @@ function Home() {
   return (
     <div
       className="h-screen"
-      // style={{
-      //   backgroundImage:
-      //     'url("https://cdn.pixabay.com/photo/2018/03/27/18/44/ambulance-3266960_1280.jpg")',
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      // }}
     >
       <div className="h-full">
-        <LandingNavBar />
 
-        <div className="flex">
-          <div className="w-3/4 pt-10 pb-36 flex items-center justify-center bg-blue-100">
+        <div>
+          <div
+          className="w-full"
+          style={{
+            backgroundImage: `url(${car})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            backgroundSize: 'cover'
+          }}>
+          <LandingNavBar />
+
+          <div className="w-full pt-10 pb-36 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
+          >
             <div className="">
-              <p className="font-bold text-4xl font-sans text-black">
+              <p className="font-bold text-4xl font-sans text-white">
                 Timely Rescue Services
               </p>
               <div className="flex">
-                <div className="font-bold text-4xl font-sans text-black">
+                <div className="font-bold text-4xl font-sans text-white">
                   & Medical
                 </div>
                 <div className="text-blue-500 font-bold text-4xl font-sans ml-2">
@@ -71,7 +76,7 @@ function Home() {
                 </div>
               </div>
 
-              <div className="mt-12 flex text-xl font-sans font-semibold items-center">
+              <div className="mt-12 flex text-xl font-sans font-semibold text-white items-center">
                 Or call our hotline number{" "}
                 <div className="text-red-700 font-sans text-3xl font-bold ml-4">
                   0701 297753
@@ -79,8 +84,6 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="w-1/4 bg-blue-400">
-            
           </div>
         </div>
         {/* Key services */}
@@ -159,18 +162,15 @@ function Home() {
         <div className="flex flex-col justify-center items-center font-sans my-4">
          <div className="font-bold text-3xl ">Areas We Serve</div>
          <br/>
-         <div className="w-1/3 font-sans text-gray-600">We typically serve the areas listed below, however please give us a call to confirm.</div>
+         <div className="w-1/3 font-sans text-gray-600">Our services are available countrywide.</div>
         <div className="w-full my-6 flex items-center justify-evenly">
         <div className="font-sans text-gray-600">
-          <ul style={{listStyle: 'square'}}>
-            <li>Kasarani, Nairobi</li>
-            <li>Muthaiga, Nairobi</li>
-            <li>Karen, Nairobi, Kenya</li>
-            <li>Thika, Central Province</li>
-            <li>Kiambu, Central Province</li>
-            <li>Murang&apos;a, Central Province</li>
-            <li>Machakos, Eastern Province</li>
-            <li>Athi River, Eastern Province</li>
+          <div className="font-sans font-bold text-xl mb-6">We&lsquo;re available in all 47 counties</div>
+          <ul style={{listStyle: 'square', height: 350, overflow: "scroll"}}>
+            {
+              counties.map((data, index) => 
+              <li key={index}>{data}</li>)
+            }
           </ul>
         </div>
           <div className="w-1/2">

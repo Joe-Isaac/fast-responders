@@ -29,11 +29,11 @@ function LandingNavBar() {
   
 
   return (
-    <div className="w-full pt-0 flex justify-between px-0">
+    <div className="w-full pt-0 flex justify-between px-0 text-white font-sans font-bold">
       {dimensions > 768 ? (
         // Logo for large screen
         <div   
-      className="sm:w-1/4 bg-blue-100 md:ml-0 ">
+      className="sm:w-1/4 bg-[rgba(0,0,0,0.8)] md:ml-0">
         <Link to="/">
           <div className="flex items-center justify-center py-4">
             <img src={logo} className="w-28 h-28 mx-4 rounded-full object-contain" />
@@ -64,9 +64,9 @@ function LandingNavBar() {
 
       {dimensions > 768 ? (
         <>
-        <div className="sm:w-1/2 flex items-center text-base bg-blue-100">
+        <div className="sm:w-1/2 flex items-center text-base bg-[rgba(0,0,0,0.8)]">
           <div className="flex justify-center md:w-2/3 items-center">
-            <div className="w-4/5 flex justify-between items-center font-serif ">
+            <div className="w-4/5 flex justify-between items-center ">
               
               <div className="cursor-pointer">
                 <Link to="/" className="cursor-pointer">
@@ -90,13 +90,11 @@ function LandingNavBar() {
           </div>
         </div>
 
-        <div className="flex justify-center sm:w-1/4 items-center bg-blue-400">
+        <div className="flex justify-center sm:w-1/4 items-center bg-[rgba(0,0,0,0.8)]">
         <div className="w-full flex justify-evenly items-center font-serif">
           
           <div className="cursor-pointer">
-            <Link to="/" className="cursor-pointer text-white font-bold font-sans">
-              Gallery
-            </Link>
+            
           </div>
           <div className="cursor-pointer">
             <Link to="/sign-in" className="cursor-pointer">
@@ -163,13 +161,7 @@ function LandingNavBar() {
                 </Link>
               </div>
               <div className="mb-6">
-                <Link
-                  to="/"
-                  className="block  font-serif font-semibold text-2xl hover:text-black py-2"
-                  onClick={toggleMenu}
-                >
-                  Gallery
-                </Link>
+                
               </div>
               <div className="mb-6">
                 <Link
