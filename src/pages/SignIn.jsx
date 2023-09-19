@@ -7,15 +7,53 @@ import {
 import { doc, getDoc } from "firebase/firestore/lite";
 import { authentication, db } from "../Firebase/firebase-config";
 import logo from "../assets/logo.jpg";
-import { Card, Form, Input } from "antd";
+import { Card, Form, Input, Modal, Spin, message } from "antd";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SignIn() {
+  const location = useLocation();
   const [emailAddress, setEmailAddress] = useState();
   const [password, setPassword] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const data = location.state;
+  const navigate = useNavigate();
 
+  const successMessage = (message) => {
+    Modal.success({
+      title: (
+        <div>
+          {' '}
+          <p style={{color: 'green'}}> Success Message</p>{' '}
+        </div>
+      ),
+      content: (
+        <div>
+          {' '}
+          <p style={{fontWeight: 'bold', fontSize: 15}}> Successfully signed in</p>{' '}
+        </div>
+      )
+    });
+  };
+
+  const errorMessage = (errorMsg) => {
+    Modal.error({
+      title: (
+        <div>
+          <p style={{color: '#f5222d'}}> Error Message</p>
+        </div>
+      ),
+      content: (
+        <div>
+          <p style={{fontWeight: 'bold', fontSize: 15}}>{errorMsg}</p>
+        </div>
+      ),
+    });
+  };
+
+  // Below useEffect checks if the user is logged in and they trynna access the login page
   useEffect(() => {
     const auth = getAuth();
-    const subsribe = onAuthStateChanged(auth, (user) => {
+    const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigateUserByRole();
       } else {
@@ -23,44 +61,68 @@ function SignIn() {
       }
     });
 
-    subsribe();
+    subscribe();
   }, []);
 
+  // Below useEffect checks if we have been redirected to this page
+  useEffect(()=>{
+    if(data !== null){
+      message.error(data.message);
+    }
+  }, [])
+
+  // This function will navigate the user by the role after signing in
   async function navigateUserByRole() {
     const auth = getAuth();
+
+    console.log("This is auth ", auth);
 
     const docRef = doc(db, "users", auth?.currentUser?.uid);
     const data = await getDoc(docRef);
     if (data) {
       const userInfo = data.data();
 
+      // console.log("This is user info ", userInfo);
+
       if (userInfo.role === "driver") {
-        //   navigation.navigate("HomeScreen");
-      } else if (userInfo.role == "serviceProvider") {
+          navigate("/profile")
+      } else if (userInfo.role == "admin") {
         //   navigation.navigate("ProviderProfileScreen");
+        navigate("/create-user")
       } else {
         console.log("Theres been an error with the user role ", userInfo.role);
       }
     } else {
       console.log("There was an error getting data");
+      errorMessage("User data does not exist");
     }
   }
 
-  async function signIn() {
+  // This is signing in
+  async function signIn(data) {
+    console.log("Signing in user to firebase")
+    setIsLoading(true);
     try {
       const res = await signInWithEmailAndPassword(
         authentication,
-        emailAddress,
-        password
+        data.email,
+        data.password
       );
+      console.log("This is the response after signing in ", res);
+      setIsLoading(false);
+      successMessage("Successfully signed in")
       navigateUserByRole();
     } catch (err) {
-      console.log(err, " error while fetching ");
+      setIsLoading(false);
+      errorMessage(err.message);
+      console.log(err.message, " error while fetching ");
     }
+
+      setIsLoading(false);
   }
 
   function submitForm(data) {
-    console.log("We have submitted form data ", data);
+    signIn(data);
   }
 
   const formItemLayout = {
@@ -143,6 +205,13 @@ function SignIn() {
             </Form>
           </div>
         </Card>
+
+        <Modal open={isLoading} footer={false} closable={false}>
+          <div className="flex flex-col my-4 space-y-4 items-center justify-center">
+          <div className="font-sans font-semibold text-2xl">Signing in</div>
+          <Spin/>
+          </div>
+        </Modal>
 
         {/* Any other details section */}
       </div>

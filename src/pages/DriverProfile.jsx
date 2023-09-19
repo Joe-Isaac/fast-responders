@@ -5,14 +5,19 @@ import { Button, Card, Modal, Switch } from 'antd'
 import Map from '../components/Map'
 import Logo from '../assets/logo.jpg'
 import moment from 'moment'
+import { authentication } from '../Firebase/firebase-config'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
-function DriverProfile() {
+function DriverProfile({auth}) {
   const [switchColor, setSwitchColor] = useState('gray');
   const [location, setLocation] = useState();
+  const [authenticated, setAuthenticated] = useState();
+  const navigate = useNavigate();
   // const [coordinates, setCoordinates] = useState([-1.286389, 36.817223]);
 
   function handleGeoTracking(data){
-    console.log("Geo tracking activation ", data);
+    console.log("Geo tracking activated ", data);
     // if data is true activation is opened.
     let watchId;
     if(data){
@@ -41,21 +46,27 @@ function DriverProfile() {
   }
 
 
-  // useEffect(() => {
-  //     const updateCoordinates = () => {
-  //       // Simulate coordinates changing (e.g., from a GPS or real-time data source)
-  //       const newLatitude = coordinates[0] + 0.001; // Example: Increment latitude
-  //       const newLongitude = coordinates[1] + 0.001; // Example: Increment longitude
-  //       console.log("New locations ", newLatitude, newLongitude)
-  //       setLocation([newLatitude, newLongitude]);
-  //       setCoordinates([newLatitude, newLongitude])
-  //     };
-  
-  //     // Update coordinates at a regular interval (e.g., every second)
-  //     const intervalId = setInterval(updateCoordinates, 1000);
-  
-  //     return () => clearInterval(intervalId);
-  //   }, [coordinates]);
+  useEffect(()=>{
+    const authCheck = onAuthStateChanged(authentication, (user) => {
+      if (user) {
+        // User is signed in.
+        console.log('User is logged in:', user.uid);
+        setAuthenticated(user);
+        // You can perform actions for authenticated users here.
+      } 
+    })
+
+    if(auth){
+      console.log("This is the authentication details ", auth);
+    }
+    // The user wil never be in this page without having an auth token,
+    //  but just in case they dont redirect them again.
+    // If the user does not have the token from the url
+    // check the auth state
+    else{
+      authCheck();
+    }
+  }, [])
 
 
 
@@ -84,6 +95,17 @@ function DriverProfile() {
     });
   };
 
+  async function logout(){
+    try{
+      const res = await signOut(authentication);
+      console.log("This is the res ", res);
+    }
+    catch(err){
+      errorMessage(err);
+    }
+
+  }
+
 
   return (
     // Global container
@@ -92,7 +114,7 @@ function DriverProfile() {
     {/* Header section */}
     <div className='flex items-center w-full border-b-2'>
         <div className='flex w-1/2 items-start m-3 py-1 px-2'>
-      <Button className='flex items-center font-bold'>
+      <Button className='flex items-center font-bold' onClick={logout}>
         <ArrowLeftOutlined/>
         <div className='mx-2 text-sm'>
           Sign out

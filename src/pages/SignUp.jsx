@@ -4,13 +4,15 @@ import {
   signInWithEmailAndPassword,
   getAuth,
   createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore/lite";
 import { authentication, db } from "../Firebase/firebase-config";
 import logo from "../assets/logo.jpg";
-import { Card, Form, Input, Modal, Spin } from "antd";
+import { Button, Card, Form, Input, Modal, Spin } from "antd";
+import { ArrowLeftOutlined } from '@ant-design/icons'
 
-function SignUp() {
+function SignUp({auth}) {
   const [emailAddress, setEmailAddress] = useState();
   const [password, setPassword] = useState();
   const [isCreatingUser, setIsCreatingUser] = useState(false);
@@ -61,6 +63,10 @@ function SignUp() {
 //       console.log(err, " error while fetching ");
 //     }
 //   }
+
+ useEffect(()=>{
+  console.log("This is the authentication data ", auth)
+ }, [])
 
   async function submitForm(data) {
     console.log("We have submitted form data ", data);
@@ -148,6 +154,17 @@ function SignUp() {
     });
   };
 
+  async function logout(){
+    try{
+      const res = await signOut(authentication);
+      console.log("This is the res ", res);
+    }
+    catch(err){
+      errorMessage(err);
+    }
+
+  }
+
   const creatingUser = (message) => {
     Modal.info({
       title: (
@@ -182,7 +199,15 @@ function SignUp() {
 }
 
   return (
-    <div className="h-screen flex items-center bg-blue-50">
+    <div className="h-screen flex flex-col items-center bg-blue-50">
+      <div className='flex w-full items-start m-3 py-1 px-2 my-8'>
+      <Button className='flex items-center font-bold' onClick={logout}>
+        <ArrowLeftOutlined/>
+        <div className='mx-2 text-sm'>
+          Sign out
+        </div>
+      </Button>
+        </div>
       <div className="w-full flex justify-center items-center">
         {/* Header section */}
 
