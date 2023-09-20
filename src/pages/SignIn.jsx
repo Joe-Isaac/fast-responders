@@ -31,7 +31,10 @@ function SignIn() {
           {' '}
           <p style={{fontWeight: 'bold', fontSize: 15}}> Successfully signed in</p>{' '}
         </div>
-      )
+      ),
+      closable: true,
+      okButtonProps: {className:'bg-blue-500'},
+      // footer: true
     });
   };
 
@@ -47,6 +50,9 @@ function SignIn() {
           <p style={{fontWeight: 'bold', fontSize: 15}}>{errorMsg}</p>
         </div>
       ),
+      closable: true,
+      okButtonProps: {style:{backgroundColor: 'red'}},
+      // footer: false
     });
   };
 
@@ -127,13 +133,13 @@ function SignIn() {
 
   const formItemLayout = {
     labelCol: {
-      xs: {span: 24},
-      sm: {span: 24},
+      xs: {span: 7},
+      sm: {span: 7},
       md: {span: 6},
     },
     wrapperCol: {
-      xs: {span: 24},
-      sm: {span: 24},
+      xs: {span: 17},
+      sm: {span: 17},
       md: {span: 18},
     },
   };
@@ -151,7 +157,7 @@ function SignIn() {
             boxShadow:
               "rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px",
           }}
-          className="w-2/5"
+          className="mx-4 md:w-2/5"
         >
           <div className="w-full flex justify-center">
           <img src={logo} className="object-cover h-28 w-28" />
@@ -159,10 +165,10 @@ function SignIn() {
 
           <div className="flex w-full flex-col items-center justify-center">
           <div className="my-3">
-          <div className="text-3xl font-sans font-bold">Sign In</div>
+          <div className="text-3xl font-sans font-bold w-full flex justify-center">Sign In</div>
           <div className="text-sm font-mono my-3">Welcome back, sign in below</div>
           </div>
-            <Form onFinish={submitForm} className="w-4/5">
+            <Form onFinish={submitForm} className="md:w-4/5">
               <Form.Item
               {...formItemLayout}
               className="text-lg my-8"
@@ -179,7 +185,7 @@ function SignIn() {
                   },
                 ]}
               >
-                <Input size="large" className="w-4/5 font-mono text-base"/>
+                <Input size="large" className="md:w-4/5 font-mono md:text-base text-sm"/>
               </Form.Item>
               <Form.Item
               {...formItemLayout}
@@ -194,7 +200,7 @@ function SignIn() {
                 name="password"
                 
               >
-                <Input.Password visibilityToggle size="large" className="w-4/5"/>
+                <Input.Password visibilityToggle size="large" className="md:w-4/5 md:text-base text-sm"/>
               </Form.Item>
 
               <div className="w-full flex h-12 justify-center">

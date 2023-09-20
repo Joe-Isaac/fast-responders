@@ -29,11 +29,11 @@ function LandingNavBar() {
   
 
   return (
-    <div className="w-full pt-0 flex justify-between px-0 text-white font-sans font-bold">
+    <div className="w-full pt-0 flex justify-between px-0 bg-[rgba(0,0,0,0.65)]  text-white font-sans font-bold">
       {dimensions > 768 ? (
         // Logo for large screen
         <div   
-      className="sm:w-1/4 bg-[rgba(0,0,0,0.8)] md:ml-0">
+      className="sm:w-1/4  md:ml-0">
         <Link to="/">
           <div className="flex items-center justify-center py-4">
             <img src={logo} className="w-28 h-28 mx-4 rounded-full object-contain" />
@@ -43,28 +43,17 @@ function LandingNavBar() {
       )
       :
       // Logo for small screens
-      <motion.div initial={{
-        opacity: 0
-      }}
-      animate={{
-        // x: 0,
-        opacity: 1,
-        // scale: 1,
-    }}
-
-    transition={{
-        duration: 4.0,
-    }}      
+      <div
       className="sm:w-1/4 pt-2 ml-[2%] md:ml-0">
         <Link to="/">
           <img src={logo} className="w-20 rounded-full object-contain" />
         </Link>
-      </motion.div>
+      </div>
       }
 
       {dimensions > 768 ? (
         <>
-        <div className="sm:w-1/2 flex items-center text-base bg-[rgba(0,0,0,0.8)]">
+        <div className="sm:w-1/2 flex items-center text-base">
           <div className="flex justify-center md:w-2/3 items-center">
             <div className="w-4/5 flex justify-between items-center ">
               
@@ -90,7 +79,7 @@ function LandingNavBar() {
           </div>
         </div>
 
-        <div className="flex justify-center sm:w-1/4 items-center bg-[rgba(0,0,0,0.8)]">
+        <div className="flex justify-center sm:w-1/4 items-center ">
         <div className="w-full flex justify-evenly items-center font-serif">
           
           <div className="cursor-pointer">
@@ -111,7 +100,7 @@ function LandingNavBar() {
         <div className="mr-8">
           {/* Mobile Menu */}
           <div
-            className={`fixed inset-0 bg-[rgba(0,0,0,0.94)] z-50 h-screen transition-opacity duration-300 ${
+            className={`fixed inset-0 bg-[rgba(0,0,0,0.94)] z-50 pt-6 h-screen transition-opacity duration-300 ${
               isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
@@ -121,9 +110,9 @@ function LandingNavBar() {
               className="h-28 rounded-full"
               />
             </div>
-            <div className="absolute top-0 right-0 p-4">
+            <div className="absolute top-0 right-0 pt-8">
               <button
-                className=" font-semibold text-2xl text-white hover:text-black"
+                className=" font-semibold text-2xl pr-8 text-white hover:text-black"
                 onClick={closeMenu}
               >
                 {/* <CloseIcon/> */}
@@ -161,15 +150,12 @@ function LandingNavBar() {
                 </Link>
               </div>
               <div className="mb-6">
-                
-              </div>
-              <div className="mb-6">
                 <Link
-                  to="/"
+                  to="/sign-in"
                   className="block  font-serif font-semibold text-2xl hover:text-black py-2"
                   onClick={toggleMenu}
                 >
-                  About us
+                  Login
                 </Link>
               </div>
               {/* <div className="mb-6">
@@ -189,20 +175,20 @@ function LandingNavBar() {
             className="flex items-center justify-center ml-2 pt-8 h-4 md:hidden cursor-pointer"
             onClick={toggleMenu}
           >
-            <span className="w-6 h-px bg-[#000] transform transition-transform duration-300">
+            <span className="w-6 h-px bg-[#fff] transform transition-transform duration-300">
               <span
-                className={`absolute top-[4px] left-0 bg-[#000] w-6 h-px transform transition-transform duration-300 ${
+                className={`absolute top-[4px] left-0 bg-[#fff] w-6 h-px transform transition-transform duration-300 ${
                   isOpen ? "rotate-45" : ""
                 }`}
               >
               </span>
               <span
-                className={`absolute top-[9px] left-0 bg-[#000] w-6 h-px transform transition-transform duration-300 ${
+                className={`absolute top-[9px] left-0 bg-[#fff] w-6 h-px transform transition-transform duration-300 ${
                   isOpen ? "opacity-0" : ""
                 }`}
               ></span>
               <span
-                className={`absolute top-[14px] left-0 bg-[#000] w-6 h-px transform transition-transform duration-300 ${
+                className={`absolute top-[14px] left-0 bg-[#fff] w-6 h-px transform transition-transform duration-300 ${
                   isOpen ? "-rotate-45" : ""
                 }`}
               ></span>

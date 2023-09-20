@@ -77,21 +77,41 @@ function DriverProfile({auth}) {
     )
   }
 
-  const errorMessage = (message) => {
-    console.log("Error message ", message)
+  // const successMessage = (message) => {
+  //   Modal.success({
+  //     title: (
+  //       <div>
+  //         {' '}
+  //         <p style={{color: 'green'}}> Success Message</p>{' '}
+  //       </div>
+  //     ),
+  //     content: (
+  //       <div>
+  //         {' '}
+  //         <p style={{fontWeight: 'bold', fontSize: 15}}> Successfully signed in</p>{' '}
+  //       </div>
+  //     ),
+  //     closable: true,
+  //     okButtonProps: {className:'bg-blue-500'},
+  //     // footer: true
+  //   });
+  // };
+
+  const errorMessage = (errorMsg) => {
     Modal.error({
       title: (
         <div>
-          {' '}
-          <p style={{color: 'red'}}> Error Message</p>{' '}
+          <p style={{color: '#f5222d'}}> Error Message</p>
         </div>
       ),
       content: (
         <div>
-          {' '}
-          <p style={{fontWeight: 'bold', fontSize: 15}}> {message?.message}</p>{' '}
+          <p style={{fontWeight: 'bold', fontSize: 15}}>{errorMsg}</p>
         </div>
       ),
+      closable: true,
+      okButtonProps: {style:{backgroundColor: 'red'}},
+      // footer: false
     });
   };
 
@@ -113,7 +133,7 @@ function DriverProfile({auth}) {
 
     {/* Header section */}
     <div className='flex items-center w-full border-b-2'>
-        <div className='flex w-1/2 items-start m-3 py-1 px-2'>
+        <div className='flex md:w-1/2 w-full items-start m-3 py-1 px-2'>
       <Button className='flex items-center font-bold' onClick={logout}>
         <ArrowLeftOutlined/>
         <div className='mx-2 text-sm'>
@@ -129,18 +149,18 @@ function DriverProfile({auth}) {
     </div>
 
     {/* Profile section */}
-    <div className='w-3/4 rounded-md shadow-md flex items-center px-4 py-4 mt-6 justify-between'>
+    <div className='w-11/12 md:w-3/4 rounded-md shadow-md flex md:flex-row flex-col items-center px-4 py-4 mt-6 justify-between'>
       {/* Avatar */}
-      <div className='flex justify-evenly items-center'>
+      <div className='flex justify-evenly items-center mb-4'>
         <div>
         <img 
         src='https://cdn.pixabay.com/photo/2013/10/22/07/56/android-199225_1280.jpg'
         alt='profile picture'
-        className='rounded-full h-12 w-12'/>
+        className='rounded-full md:h-12 md:w-12 h-16 w-16'/>
         </div>
 
         <div className='mx-4'>
-          <div className='font-extrabold font-mono text-lg'>Joseph Gathekia</div>
+          <div className='font-extrabold font-mono text-sm md:text-lg'>Joseph Gathekia</div>
           <div className='text-gray-400 font-normal'>Driver</div>
         </div>
       </div>
@@ -148,43 +168,44 @@ function DriverProfile({auth}) {
       {/* Employment type */}
       <div className="flex justify-center">
         <div className='border-r-2 mx-4 px-2'>
-          <div className='text-gray-400 font-normal my-1 text-base'>Employment Type</div>
-          <div className='font-mono font-bold text-sm'>Full time</div>
+          <div className='text-gray-400 font-normal my-1 md:text-base text-sm'>Employment Type</div>
+          <div className='font-mono font-bold md:text-sm text-xs'>Full time</div>
         </div>
         <div>
-          <div className='text-gray-400 font-normal my-1 text-base'>Has account?</div>
-          <div className='bg-[#52c41a] text-white font-mono text-sm font-extrabold flex justify-center rounded-md'>Yes</div>
+          <div className='text-gray-400 font-normal my-1 md:text-base text-sm'>Has account?</div>
+          <div className='bg-[#52c41a] text-white font-mono md:text-sm text-xs font-extrabold flex justify-center rounded-md'>Yes</div>
         </div>
       </div>
     </div>
 
 
     {/* Small cut off section */}
-    <div className='w-3/4 mt-4 flex'>
+    <div className='md:w-3/4 w-11/12 mt-4 flex'>
       <div className='mx-3 flex justify-around items-center text-blue-500 bg-blue-50 p-1'>
         <AppstoreOutlined />
-        <div className='font-mono font-semibold mx-2 text-sm'>Overview</div>
+        <div className='font-mono font-semibold mx-2 md:text-sm text-xs'>Overview</div>
       </div>
 
       <div className='mx-3 flex justify-around items-center p-1'>
         <ClockCircleOutlined/>
-        <div className='font-mono font-semibold mx-2 text-sm'>Working hours</div>
+        <div className='font-mono font-semibold mx-2 md:text-sm text-xs'>Working hours</div>
       </div>
 
       <div className='mx-3 flex justify-around items-center p-1'>
         <PaperClipOutlined/>
-        <div className='font-mono font-semibold mx-2 text-sm'>Documents</div>
+        <div className='font-mono font-semibold mx-2 md:text-sm text-xs'>Documents</div>
       </div>
       
     </div>
 
     {/* Employment details section */}
-    <div className='w-3/4 mt-4 flex border-x-2 border-b-2 flex-col justify-center items-center'>
+    <div className='md:w-3/4 w-11/12 mt-4 flex border-x-2 border-b-2 flex-col justify-center items-center'>
       {/* Header */}
       <div className='font-semibold font-sans text-sm m-2 w-11/12'>Employment details</div>
 
-      <div className='flex w-11/12 justify-between'>
-      <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className='w-5/12 my-2'>
+      <div className='flex w-11/12 md:flex-row flex-col justify-between'>
+      <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}}
+      className='md:w-5/12 my-2'>
         <div className='w-full border-b-2 font-semibold font-mono my-2 py-2 px-4 flex justify-between items-center'>
           <div>Basic</div>
           <div className='text-blue-500'><EditOutlined/></div>
@@ -209,7 +230,7 @@ function DriverProfile({auth}) {
         </div>
       </Card>
 
-      <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className='w-5/12 my-2'>
+      <Card style={{boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 2px -2px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px, rgba(0, 0, 0, 0.09) 0px 5px 12px 4px'}} className='md:w-5/12 my-2'>
       <div className='w-full border-b-2 font-semibold font-mono my-2 py-2 px-4 flex justify-between items-center'>
           <div>More details</div>
           <div className='text-blue-500'><EditOutlined/></div>
