@@ -15,12 +15,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState();
   const [checkedAuth, setCheckedAuth] = useState(false);
   const [userRole, setUserRole] = useState(null)
-  // const isAuthenticated = () => {
-  //   console.log("Is the user authenticated? Yes");
-  //   return false; // Replace with your authentication logic
-  // };
   useEffect(() => {
-    console.log("Every time you visit a route I am triggered");
 
 
     async function checkUserRole(uid){
@@ -28,26 +23,14 @@ function App() {
       const data = await getDoc(docRef);
       if (data) {
         const userInfo = data.data();
-        console.log("This is user info ", userInfo);
         setAuthenticated(userInfo);
-        // if (userInfo.role === "driver") {
-        //     setUserRole("driver");
-        // } else if (userInfo.role == "admin") {
-        //   //   navigation.navigate("ProviderProfileScreen");
-        //   setUserRole("admin");
-        // } else {
-        //   console.log("Theres been an error with the user role ", userInfo.role);
-          
-        // }
     }
   }
 
     // Create an authentication observer
       onAuthStateChanged(authentication, (user) => {
-      console.log("Checking authentication state")
       if (user) {
         // User is signed in.
-        console.log('User is logged in at router:', user);
         
         // setAuthenticated(user);
         checkUserRole(user.uid);
@@ -55,7 +38,6 @@ function App() {
       } else {
         // User is signed out.
         // setAuthenticated(null);
-        console.log('User is logged out ', user);
           setAuthenticated("unauthorized");
         
         // You can handle the case of a signed-out user here.

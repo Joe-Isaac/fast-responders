@@ -18,64 +18,13 @@ function SignUp({auth}) {
   const [isCreatingUser, setIsCreatingUser] = useState(false);
   const [form] = Form.useForm();
 
-//   useEffect(() => {
-//     const auth = getAuth();
-//     const subsribe = onAuthStateChanged(auth, (user) => {
-//       if (user) {
-//         navigateUserByRole();
-//       } else {
-//         console.log("User not logged in");
-//       }
-//     });
-
-//     subsribe();
-//   }, []);
-
-//   async function navigateUserByRole() {
-//     const auth = getAuth();
-
-//     const docRef = doc(db, "users", auth?.currentUser?.uid);
-//     const data = await getDoc(docRef);
-//     if (data) {
-//       const userInfo = data.data();
-
-//       if (userInfo.role === "driver") {
-//         //   navigation.navigate("HomeScreen");
-//       } else if (userInfo.role == "serviceProvider") {
-//         //   navigation.navigate("ProviderProfileScreen");
-//       } else {
-//         console.log("Theres been an error with the user role ", userInfo.role);
-//       }
-//     } else {
-//       console.log("There was an error getting data");
-//     }
-//   }
-
-//   async function signIn() {
-//     try {
-//       const res = await signInWithEmailAndPassword(
-//         authentication,
-//         emailAddress,
-//         password
-//       );
-//       navigateUserByRole();
-//     } catch (err) {
-//       console.log(err, " error while fetching ");
-//     }
-//   }
-
- useEffect(()=>{
-  console.log("This is the authentication data ", auth)
- }, [])
-
   async function submitForm(data) {
-    console.log("We have submitted form data ", data);
 
     setIsCreatingUser(true);
     try{
         // create user with email and password
       const userCredential = await createUserWithEmailAndPassword(authentication, data.email, data.password);
-      console.log("User created ", userCredential.user);
+
       // save user role to Firestore
       const user = userCredential.user;
 
@@ -95,7 +44,6 @@ function SignUp({auth}) {
         data: null,
       });
         setIsCreatingUser(false);
-        console.log("This is the response from creating a user in firebase. ", res)
         successMessage(`user with email ${data?.email} created successfully. User repo also initialized.`)
     }
     catch(err){
@@ -160,8 +108,7 @@ function SignUp({auth}) {
 
   async function logout(){
     try{
-      const res = await signOut(authentication);
-      console.log("This is the res ", res);
+      await signOut(authentication);
     }
     catch(err){
       errorMessage(err);

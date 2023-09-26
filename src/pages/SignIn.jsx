@@ -81,14 +81,12 @@ function SignIn() {
   async function navigateUserByRole() {
     const auth = getAuth();
 
-    console.log("This is auth ", auth);
 
     const docRef = doc(db, "users", auth?.currentUser?.uid);
     const data = await getDoc(docRef);
     if (data) {
       const userInfo = data.data();
 
-      // console.log("This is user info ", userInfo);
 
       if (userInfo.role === "driver") {
           navigate("/profile")
@@ -96,17 +94,15 @@ function SignIn() {
         //   navigation.navigate("ProviderProfileScreen");
         navigate("/create-user")
       } else {
-        console.log("Theres been an error with the user role ", userInfo.role);
+        console.log("Theres been an error with the user role ");
       }
     } else {
-      console.log("There was an error getting data");
       errorMessage("User data does not exist");
     }
   }
 
   // This is signing in
   async function signIn(data) {
-    console.log("Signing in user to firebase")
     setIsLoading(true);
     try {
       const res = await signInWithEmailAndPassword(
@@ -114,14 +110,12 @@ function SignIn() {
         data.email,
         data.password
       );
-      console.log("This is the response after signing in ", res);
       setIsLoading(false);
       successMessage("Successfully signed in")
       navigateUserByRole();
     } catch (err) {
       setIsLoading(false);
       errorMessage(err.message);
-      console.log(err.message, " error while fetching ");
     }
 
       setIsLoading(false);

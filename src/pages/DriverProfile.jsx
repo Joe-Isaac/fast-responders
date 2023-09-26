@@ -16,8 +16,12 @@ function DriverProfile({auth}) {
   const navigate = useNavigate();
   // const [coordinates, setCoordinates] = useState([-1.286389, 36.817223]);
 
+  useEffect(()=>{
+    // Fetch the driver's details and use the email addres.
+    console.log("This is auth data ", auth)
+  }, [])
+
   function handleGeoTracking(data){
-    console.log("Geo tracking activated ", data);
     // if data is true activation is opened.
     let watchId;
     if(data){
@@ -32,7 +36,6 @@ function DriverProfile({auth}) {
     );
 
     // Log the watchId (you will need this to clear the watch later)
-    console.log(`Geotracking started with watchId: ${watchId}`);
   } 
   else {
     console.error('Geolocation is not supported by this browser.');
@@ -50,14 +53,13 @@ function DriverProfile({auth}) {
     const authCheck = onAuthStateChanged(authentication, (user) => {
       if (user) {
         // User is signed in.
-        console.log('User is logged in:', user.uid);
         setAuthenticated(user);
         // You can perform actions for authenticated users here.
       } 
     })
 
     if(auth){
-      console.log("This is the authentication details ", auth);
+      console.log("");
     }
     // The user wil never be in this page without having an auth token,
     //  but just in case they dont redirect them again.
@@ -71,7 +73,6 @@ function DriverProfile({auth}) {
 
 
   function handleLocationUpdate(location){
-    console.log("Location update ", location);
     setLocation(
       [location?.coords?.latitude, location.coords.longitude]
     )
@@ -117,8 +118,7 @@ function DriverProfile({auth}) {
 
   async function logout(){
     try{
-      const res = await signOut(authentication);
-      console.log("This is the res ", res);
+      await signOut(authentication);
     }
     catch(err){
       errorMessage(err);
@@ -154,14 +154,14 @@ function DriverProfile({auth}) {
       <div className='flex justify-evenly items-center mb-4'>
         <div>
         <img 
-        src='https://cdn.pixabay.com/photo/2013/10/22/07/56/android-199225_1280.jpg'
+        src='https://img.freepik.com/premium-vector/3d-realistic-person-people-vector-illustration_156780-130.jpg?w=740'
         alt='profile picture'
         className='rounded-full md:h-12 md:w-12 h-16 w-16'/>
         </div>
 
         <div className='mx-4'>
-          <div className='font-extrabold font-mono text-sm md:text-lg'>Joseph Gathekia</div>
-          <div className='text-gray-400 font-normal'>Driver</div>
+          <div className='font-extrabold font-mono text-base md:text-lg'>{auth?.email}</div>
+          <div className='text-gray-400 font-normal'>{auth?.role}</div>
         </div>
       </div>
 

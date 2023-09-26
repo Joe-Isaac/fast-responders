@@ -6,7 +6,6 @@ const PrivateRoute = () => {
 
   // Replace this with your actual authentication logic
   const isAuthenticated = () => {
-    console.log("Is the user authenticated?");
     return true; // Replace with your authentication logic
   };
 
